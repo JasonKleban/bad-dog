@@ -4,6 +4,7 @@
   "description": "Bad Dog ========================",
   "main": "server.js",
   "dependencies": {
+    "app-root-path": "^2.0.1",
     "express": "^4.15.2",
     "serve-index": "^1.8.0"
   },
