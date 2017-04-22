@@ -50,3 +50,5 @@ def main():
                 else:
                     print('image discarded as rms was only {}'.format(diff))
             time.sleep(10)
+
+main()
