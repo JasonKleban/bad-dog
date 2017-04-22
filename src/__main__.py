@@ -27,8 +27,13 @@ with PiCamera() as camera:
         stream.seek(0)
         image = Image.open(stream)
         imageArray = np.asarray(image.convert('L'))
-        if lastImage is None or similarity < mse(lastImage, imageArray):
-            image.save('out/' + time.strftime('%Y%m%d-%H%M%S') + '.png','PNG')
-            lastImage = imageArray
-            print('kept a picture')
+        if lastImage is None:
+            mseResult = mse(lastImage, imageArray)
+            if similarity < mseResult:
+                filename = 'out/' + time.strftime('%Y%m%d-%H%M%S') + '.png'
+                image.save(filename,'PNG')
+                lastImage = imageArray
+                print('kept {} with mse of {}'.format(filename, mseResult))
+            else:
+                print('mse was only {}'.format(mseResult))
         time.sleep(10)
