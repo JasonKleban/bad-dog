@@ -31,11 +31,10 @@ def main():
     with PiCamera() as camera:
         stream = io.BytesIO()
         for _ in camera.capture_continuous(stream, format='png'):
-            stream.truncate()
             stream.seek(0)
             image = Image.open(stream)
-            stream.close()
-            stream = io.BytesIO()
+            stream.seek(0)
+            stream.truncate()
 
             filename = time.strftime('%Y%m%d-%H%M%S') + '.png'
 
