@@ -17,35 +17,36 @@ def rmsdiff(im1, im2):
     rms = math.sqrt(sum_of_squares/float(im1.size[0] * im1.size[1]))
     return rms
 
-lastImage = None
-stream = io.BytesIO()
+def main():
+    class state:
+        lastImage = None
+        stream = io.BytesIO()
 
-def keepImage(image, filename):
-    if not os.path.exists(out):
-        os.makedirs(out)
+    def keepImage(image, filename):
+        if not os.path.exists(out):
+            os.makedirs(out)
 
-    image.save(out + filename, 'PNG')
-    lastImage = image
-    
+        image.save(out + filename, 'PNG')
+        state.lastImage = image
 
-with PiCamera() as camera:
-    for foo in camera.capture_continuous(stream, format='png'):
-        stream.truncate()
-        stream.seek(0)
-        image = Image.open(stream)
+    with PiCamera() as camera:
+        for _ in camera.capture_continuous(state.stream, format='png'):
+            state.stream.truncate()
+            state.stream.seek(0)
+            image = Image.open(state.stream)
 
-        filename = time.strftime('%Y%m%d-%H%M%S') + '.png'
+            filename = time.strftime('%Y%m%d-%H%M%S') + '.png'
 
-        diff = None
+            diff = None
 
-        if lastImage is None:
-            keepImage(image, filename)
-            print('started with {}'.format(filename))
-        else:
-            diff = rmsdiff(lastImage, image)
-            if similarity < diff:
+            if state.lastImage is None:
                 keepImage(image, filename)
-                print('kept {} with rms of {}'.format(filename, diff))
+                print('started with {}'.format(filename))
             else:
-                print('image discarded as rms was only {}'.format(diff))
-        time.sleep(10)
+                diff = rmsdiff(state.lastImage, image)
+                if similarity < diff:
+                    keepImage(image, filename)
+                    print('kept {} with rms of {}'.format(filename, diff))
+                else:
+                    print('image discarded as rms was only {}'.format(diff))
+            time.sleep(10)
