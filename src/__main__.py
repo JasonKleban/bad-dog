@@ -4,6 +4,7 @@ import time
 import io
 from PIL import Image
 import numpy as np
+#from skimage.measure import structural_similarity as ssim
 
 def mse(imageA, imageB):
     # the 'Mean Squared Error' between the two images is the
@@ -17,7 +18,7 @@ def mse(imageA, imageB):
     return err
 
 lastImage = None
-similarity = 0.1
+similarity = 200
 stream = io.BytesIO()
 
 with PiCamera() as camera:
@@ -25,7 +26,8 @@ with PiCamera() as camera:
         stream.truncate()
         stream.seek(0)
         image = Image.open(stream)
-        if lastImage is None or similarity < mse(lastImage, image):
+        imageArray = np.asarray(image.convert('L'))
+        if lastImage is None or similarity < mse(lastImage, imageArray):
             image.save('out/' + time.strftime('%Y%m%d-%H%M%S') + '.png','PNG')
-            lastImage = image
+            lastImage = imageArray
         time.sleep(10)
