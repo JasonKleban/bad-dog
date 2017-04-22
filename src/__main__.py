@@ -33,8 +33,6 @@ def main():
         for _ in camera.capture_continuous(stream, format='png'):
             stream.seek(0)
             image = Image.open(stream)
-            stream.seek(0)
-            stream.truncate()
 
             filename = time.strftime('%Y%m%d-%H%M%S') + '.png'
 
@@ -51,5 +49,8 @@ def main():
                 else:
                     print('image discarded as rms was only {}'.format(diff))
             time.sleep(10)
+            
+            stream.seek(0)
+            stream.truncate()
 
 main()
