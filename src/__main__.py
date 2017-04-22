@@ -1,5 +1,6 @@
 import time
 import io
+import os
 import math, operator
 from picamera import PiCamera
 from PIL import Image, ImageChops
@@ -28,12 +29,20 @@ with PiCamera() as camera:
         diff = None
 
         if lastImage is None:
+            if not os.path.exists('out/'):
+                os.makedirs('out/')
+
             image.save(filename, 'PNG')
             lastImage = image
+            
+
             print('started with {}'.format(filename))
         else:
             diff = rmsdiff(lastImage, image)
             if similarity < diff:
+                if not os.path.exists('out/'):
+                    os.makedirs('out/')
+
                 image.save(filename, 'PNG')
                 lastImage = image
                 print('kept {} with rms of {}'.format(filename, diff))
