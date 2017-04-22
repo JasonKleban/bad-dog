@@ -6,7 +6,7 @@ from picamera import PiCamera
 from PIL import Image, ImageChops
 #from skimage.measure import structural_similarity as ssim
 
-similarity = 200
+similarity = 100
 out = 'out/'
 
 def rmsdiff(im1, im2):
@@ -43,13 +43,13 @@ def main():
                 print('started with {}'.format(filename))
             else:
                 diff = rmsdiff(state.lastImage, image)
-                if True: # similarity < diff:
+                if similarity < diff:
                     keepImage(image, filename)
                     print('kept {} with rms of {}'.format(filename, diff))
                 else:
                     print('image discarded as rms was only {}'.format(diff))
             time.sleep(10)
-            
+
             stream.seek(0)
             stream.truncate()
 
