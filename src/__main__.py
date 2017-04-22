@@ -41,5 +41,7 @@ with PiCamera() as camera:
                 lastImage = imageArray
                 print('kept {} with mse of {}'.format(filename, mseResult))
             else:
+                print(lastImage)
+                print(imageArray)
                 print('image discarded as mse was only {}'.format(mseResult))
         time.sleep(10)
