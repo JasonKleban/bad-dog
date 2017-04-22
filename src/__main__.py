@@ -1,6 +1,8 @@
 from time import sleep
 from picamera import PiCamera
 import time
+from io import BytesIO
+from PIL import Image
 timestr = time.strftime("%Y%m%d-%H%M%S")
 
 camera = PiCamera()
