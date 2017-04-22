@@ -29,6 +29,9 @@ def main():
         state.lastImage = image
 
     with PiCamera() as camera:
+        print('exposure_mode = {}, exposure_speed = {}'
+            .format(camera.exposure_mode, camera.exposure_speed))
+
         stream = io.BytesIO()
         for _ in camera.capture_continuous(stream, format='png'):
             stream.seek(0)
