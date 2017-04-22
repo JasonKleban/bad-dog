@@ -34,6 +34,7 @@ def main():
             stream.truncate()
             stream.seek(0)
             image = Image.open(stream)
+            stream.close()
             stream = io.BytesIO()
 
             filename = time.strftime('%Y%m%d-%H%M%S') + '.png'
