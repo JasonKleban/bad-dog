@@ -34,6 +34,7 @@ def main():
             state.stream.truncate()
             state.stream.seek(0)
             image = Image.open(state.stream)
+            state.stream.seek(0)
 
             filename = time.strftime('%Y%m%d-%H%M%S') + '.png'
 
@@ -44,7 +45,7 @@ def main():
                 print('started with {}'.format(filename))
             else:
                 diff = rmsdiff(state.lastImage, image)
-                if similarity < diff:
+                if True: # similarity < diff:
                     keepImage(image, filename)
                     print('kept {} with rms of {}'.format(filename, diff))
                 else:
