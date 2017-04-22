@@ -30,4 +30,5 @@ with PiCamera() as camera:
         if lastImage is None or similarity < mse(lastImage, imageArray):
             image.save('out/' + time.strftime('%Y%m%d-%H%M%S') + '.png','PNG')
             lastImage = imageArray
+            print('kept a picture')
         time.sleep(10)
