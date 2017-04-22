@@ -1,9 +1,8 @@
 import time
 import io
 import math, operator
-import ImageChops
 from picamera import PiCamera
-from PIL import Image
+from PIL import Image, ImageChops
 #from skimage.measure import structural_similarity as ssim
 
 def rmsdiff(im1, im2):
