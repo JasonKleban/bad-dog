@@ -20,7 +20,7 @@ def rmsdiff(im1, im2):
 def main():
     class state:
         lastImage = None
-        stream = io.BytesIO()
+        #stream = io.BytesIO()
 
     def keepImage(image, filename):
         if not os.path.exists(out):
@@ -30,11 +30,11 @@ def main():
         state.lastImage = image
 
     with PiCamera() as camera:
-        for _ in camera.capture_continuous(state.stream, format='png'):
-            state.stream.truncate()
-            state.stream.seek(0)
-            image = Image.open(state.stream)
-            state.stream.seek(0)
+        stream = io.BytesIO()
+        for _ in camera.capture_continuous(stream, format='png'):
+            #stream.truncate()
+            stream.seek(0)
+            image = Image.open(stream)
 
             filename = time.strftime('%Y%m%d-%H%M%S') + '.png'
 
