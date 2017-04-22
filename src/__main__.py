@@ -25,7 +25,7 @@ with PiCamera() as camera:
         stream.truncate()
         stream.seek(0)
         image = Image.open(stream)
-        imageArray = np.asarray(image.convert('L'))
+        imageArray = np.asarray(image.convert('L')).flatten()
 
         filename = 'out/' + time.strftime('%Y%m%d-%H%M%S') + '.png'
 
