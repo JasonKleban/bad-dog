@@ -8,7 +8,7 @@ from PIL import Image, ImageChops
 def rmsdiff(im1, im2):
     h = ImageChops.difference(im1, im2).histogram()
     return math.sqrt(reduce(operator.add,
-        map(lambda h, i: h*(i**2), h, h.keys())) / 
+        map(lambda h, i: h*(i**2), h, range(256))) / 
             (float(im1.size[0]) * im1.size[1]))
 
 lastImage = None
