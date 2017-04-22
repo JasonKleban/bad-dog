@@ -1,10 +1,13 @@
 import time
 import io
 import os
-import math, operator
+import math
 from picamera import PiCamera
 from PIL import Image, ImageChops
 #from skimage.measure import structural_similarity as ssim
+
+similarity = 200
+out = 'out/'
 
 def rmsdiff(im1, im2):
     "Calculate the root-mean-square difference between two images"
@@ -15,8 +18,15 @@ def rmsdiff(im1, im2):
     return rms
 
 lastImage = None
-similarity = 200
 stream = io.BytesIO()
+
+def keepImage(image, filename):
+    if not os.path.exists(out):
+        os.makedirs(out)
+
+    image.save(out + filename, 'PNG')
+    lastImage = image
+    
 
 with PiCamera() as camera:
     for foo in camera.capture_continuous(stream, format='png'):
@@ -24,27 +34,17 @@ with PiCamera() as camera:
         stream.seek(0)
         image = Image.open(stream)
 
-        filename = 'out/' + time.strftime('%Y%m%d-%H%M%S') + '.png'
+        filename = time.strftime('%Y%m%d-%H%M%S') + '.png'
 
         diff = None
 
         if lastImage is None:
-            if not os.path.exists('out/'):
-                os.makedirs('out/')
-
-            image.save(filename, 'PNG')
-            lastImage = image
-            
-
+            keepImage(image, filename)
             print('started with {}'.format(filename))
         else:
             diff = rmsdiff(lastImage, image)
             if similarity < diff:
-                if not os.path.exists('out/'):
-                    os.makedirs('out/')
-
-                image.save(filename, 'PNG')
-                lastImage = image
+                keepImage(image, filename)
                 print('kept {} with rms of {}'.format(filename, diff))
             else:
                 print('image discarded as rms was only {}'.format(diff))
