@@ -6,7 +6,7 @@ from picamera import PiCamera
 from PIL import Image, ImageChops
 #from skimage.measure import structural_similarity as ssim
 
-similarity = 100
+similarity = 25.0
 out = 'out/'
 
 def rmsdiff(im1, im2):
