@@ -1,4 +1,4 @@
-import 'jquery';
+/// <reference path="../node_modules/@types/jquery/index" />
 
 $(() => {
     /**

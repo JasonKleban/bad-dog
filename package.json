@@ -14,7 +14,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "tsc -p . && cp -R websrc/index.html out/ && cp -R websrc/jTinder-master/css out/css/ && cp -R websrc/jTinder-master/img out/img/ && cp -R websrc/jTinder-master/js out/js/",
+    "prestart": "npm install && tsc -p . && cp -R websrc/index.html out/ && cp -R websrc/jTinder-master/css out/css/ && cp -R websrc/jTinder-master/img out/img/ && cp -R websrc/jTinder-master/js out/js/",
     "start": "node server.js"
   },
   "author": "",
