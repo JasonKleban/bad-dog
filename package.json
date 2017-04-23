@@ -11,8 +11,17 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "tsc -p . && cp -R websrc/index.html out/ && cp -R websrc/jTinder-master/css out/css/ && cp -R websrc/jTinder-master/img out/img/ && cp -R websrc/jTinder-master/js out/js/",
     "start": "node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JasonKleban/bad-dog.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JasonKleban/bad-dog/issues"
+  },
+  "homepage": "https://github.com/JasonKleban/bad-dog#readme"
 }
