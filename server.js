@@ -13,7 +13,10 @@ app.get('/list', function(req, res){
     fs.readdir(images, (err, files) => {
         var pngs = [];
 
-        if (files) {
+        if (err) {
+            res.status(500).send(err);
+        }
+        else if (files) {
             files.forEach((file) => {
                 if (file.indexOf('.png') != -1) {
                     pngs.push(file);
