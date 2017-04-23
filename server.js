@@ -4,7 +4,7 @@ var appRoot = require('app-root-path');
 const fs = require('fs');
 
 var app = express();
-var images = appRoot.resolve('out/capturedData');
+var images = appRoot.resolve('out/capturedData/');
 
 app.use(express.static(appRoot.resolve('out')));
 app.use('/capturedData', serveIndex(images, {'icons': true}));
@@ -12,12 +12,18 @@ app.use('/capturedData', serveIndex(images, {'icons': true}));
 app.get('/list', function(req, res){
     fs.readdir(images, (err, files) => {
         var pngs = [];
-        files.forEach(function (file) {
-            if (file.indexOf('.png') != -1) {
-                pngs.push(file);
-            }
-        });
-        res.send(pngs);
+
+        if (files) {
+            files.forEach((file) => {
+                if (file.indexOf('.png') != -1) {
+                    pngs.push(file);
+                }
+            });
+            res.send(pngs);
+        }
+        else {
+            res.status(500).send('files is falsey');
+        }
     });
 });
 
