@@ -23,7 +23,7 @@ $(() => {
                 <div class="like"></div>
                 <div class="dislike"></div>
             </li>`)
-            .style('background-image', `url('capturedData/${headFile}')`)
+            .css('background-image', `url('capturedData/${headFile}')`)
             .data('fileName', headFile));
     };
 
