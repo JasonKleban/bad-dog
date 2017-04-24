@@ -30,7 +30,7 @@ $(() => {
     $("#tinderslide").jTinder({
         // dislike callback
         onDislike: function (item) {
-            $.post(`/bad/${item}`)
+            $.post(`/bad/${$(item).data('fileName')}`)
             .done(() => {
                 $('#status').text('Ok');
                 preparePane();
@@ -41,7 +41,7 @@ $(() => {
         },
         // like callback
         onLike: function (item) {
-            $.post(`/good/${item}`)
+            $.post(`/good/${$(item).data('fileName')}`)
             .done(() => {
                 $('#status').text('Ok');
                 preparePane();
