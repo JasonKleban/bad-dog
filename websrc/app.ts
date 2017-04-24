@@ -11,6 +11,21 @@ $(() => {
 
     var fileList : string[];
 
+    var preparePane = () => {
+        var paneClass = paneClasses.push(paneClasses.shift());
+
+        var headFile = fileList.pop();
+
+        $('#panes')
+            .append($(`<li class="{paneClass}">
+                <div class="img"></div>
+                <div>{headFile}</div>
+                <div class="like"></div>
+                <div class="dislike"></div>
+            </li>`)
+            .data('fileName', headFile));
+    };
+
     $("#tinderslide").jTinder({
         // dislike callback
         onDislike: function (item) {
@@ -50,26 +65,11 @@ $(() => {
     $.get('/list/')
     .done(data => {
         fileList = data;
-    });
 
-    var preparePane = () => {
-        var paneClass = paneClasses.push(paneClasses.shift());
+        $('#panes').empty();
 
-        var headFile = fileList.pop();
-
-        $('#panes')
-            .append($(`<li class="{paneClass}">
-                <div class="img"></div>
-                <div>{headFile}</div>
-                <div class="like"></div>
-                <div class="dislike"></div>
-            </li>`)
-            .data('fileName', headFile));
-    };
-
-    $('#panes').empty();
-
-    [0,1,2,3,4].forEach(fileInList => {
-        preparePane();
+        [0,1,2,3,4].forEach(fileInList => {
+            preparePane();
+        });
     });
 });
