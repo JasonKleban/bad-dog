@@ -17,12 +17,13 @@ $(() => {
         var headFile = fileList.pop();
 
         $('#panes')
-            .append($(`<li class="{paneClass}">
+            .append($(`<li class="${paneClass}">
                 <div class="img"></div>
-                <div>{headFile}</div>
+                <div>${headFile}</div>
                 <div class="like"></div>
                 <div class="dislike"></div>
             </li>`)
+            .style('background-image', `url('capturedData/${headFile}')`)
             .data('fileName', headFile));
     };
 
