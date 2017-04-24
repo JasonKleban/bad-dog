@@ -14,13 +14,23 @@ $(() => {
     $("#tinderslide").jTinder({
         // dislike callback
         onDislike: function (item) {
-            // set the status text
-            $('#status').html('Dislike image ' + (item.index()+1));
+            $.post(`/bad/${item.data('fileName')}`)
+            .done(data => {
+                $('#status').text('Ok');
+            })
+            .fail(err => {
+                $('#status').text(err);
+            });
         },
         // like callback
         onLike: function (item) {
-            // set the status text
-            $('#status').html('Like image ' + (item.index()+1));
+            $.post(`/good/${item.data('fileName')}`)
+            .done(data => {
+                $('#status').text('Ok');
+            })
+            .fail(err => {
+                $('#status').text(err);
+            });
         },
         animationRevertSpeed: 200,
         animationSpeed: 400,
