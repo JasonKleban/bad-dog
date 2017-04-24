@@ -25,7 +25,7 @@ $(() => {
         $('.img', slide)
         .css('background', `url('capturedData/${headFile}') no-repeat scroll center center`);
 
-        $('#panes').append(slide);
+        $('#panes').prepend(slide);
         
         paneClasses.push(paneClasses.shift());
     };
