@@ -1,9 +1,16 @@
 /// <reference path="../node_modules/@types/jquery/index" />
 
 $(() => {
-    /**
-     * jTinder initialization
-     */
+    var paneClasses = [
+        'pane1',
+        'pane2',
+        'pane3',
+        'pane4',
+        'pane5'
+    ];
+
+    var fileList : string[];
+
     $("#tinderslide").jTinder({
         // dislike callback
         onDislike: function (item) {
@@ -30,5 +37,29 @@ $(() => {
         $("#tinderslide").jTinder($(this).attr('class'));
     });
 
-    $.get('/list/');
+    $.get('/list/')
+    .done(data => {
+        fileList = data;
+    });
+
+    var preparePane = () => {
+        var paneClass = paneClasses.push(paneClasses.shift());
+
+        var headFile = fileList.pop();
+
+        $('#panes')
+            .append($(`<li class="{paneClass}">
+                <div class="img"></div>
+                <div>{headFile}</div>
+                <div class="like"></div>
+                <div class="dislike"></div>
+            </li>`)
+            .data('fileName', headFile));
+    };
+
+    $('#panes').empty();
+
+    [0,1,2,3,4].forEach(fileInList => {
+        preparePane();
+    });
 });

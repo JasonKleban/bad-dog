@@ -16,16 +16,13 @@ app.get('/list', function(req, res){
         if (err) {
             res.status(500).send(err);
         }
-        else if (files) {
+        else {
             files.forEach((file) => {
                 if (file.indexOf('.png') != -1) {
                     pngs.push(file);
                 }
             });
             res.send(pngs);
-        }
-        else {
-            res.status(500).send('files is falsey');
         }
     });
 });
