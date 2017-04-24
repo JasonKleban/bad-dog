@@ -16,15 +16,18 @@ $(() => {
 
         var headFile = fileList.pop();
 
-        $('#panes')
-            .append($(`<li class="${paneClasses[0]}">
+        var slide = $(`<li class="${paneClasses[0]}">
                 <div class="img"></div>
                 <div>${headFile}</div>
                 <div class="like"></div>
                 <div class="dislike"></div>
             </li>`)
-            .data('fileName', headFile)
-            .css('background', `url('capturedData/${headFile}') no-repeat scroll center center`));
+            .data('fileName', headFile);
+        
+        $('.img', slide)
+        .css('background', `url('capturedData/${headFile}') no-repeat scroll center center`);
+
+        $('#panes').append(slide);
     };
 
     $("#tinderslide").jTinder({
