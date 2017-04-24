@@ -27,7 +27,7 @@ $(() => {
 
         $('#panes').append(slide);
         
-        var paneClass = paneClasses.push(paneClasses.shift());
+        paneClasses.push(paneClasses.shift());
     };
 
     $("#tinderslide").jTinder({
