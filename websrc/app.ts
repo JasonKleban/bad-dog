@@ -12,8 +12,6 @@ $(() => {
     var fileList : string[];
 
     var preparePane = () => {
-        var paneClass = paneClasses.push(paneClasses.shift());
-
         var headFile = fileList.pop();
 
         var slide = $(`<li class="${paneClasses[0]}">
@@ -28,6 +26,8 @@ $(() => {
         .css('background', `url('capturedData/${headFile}') no-repeat scroll center center`);
 
         $('#panes').append(slide);
+        
+        var paneClass = paneClasses.push(paneClasses.shift());
     };
 
     $("#tinderslide").jTinder({
