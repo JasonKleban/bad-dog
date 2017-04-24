@@ -17,7 +17,7 @@ $(() => {
         var headFile = fileList.pop();
 
         $('#panes')
-            .append($(`<li class="${paneClass}">
+            .append($(`<li class="${paneClasses[0]}">
                 <div class="img"></div>
                 <div>${headFile}</div>
                 <div class="like"></div>
