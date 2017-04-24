@@ -12,7 +12,7 @@ $(() => {
     var fileList : string[];
 
     var preparePane = () => {
-        var paneClass = paneClasses.push(paneClasses.shift());
+        var paneClass = paneClasses.unshift(paneClasses.pop());
 
         var headFile = fileList.pop();
 
