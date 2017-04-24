@@ -23,7 +23,7 @@ $(() => {
                 <div class="like"></div>
                 <div class="dislike"></div>
             </li>`)
-            .css('background-image', `url('capturedData/${headFile}')`)
+            .css('background', `url('capturedData/${headFile}') no-repeat scroll center center`)
             .data('fileName', headFile));
     };
 
@@ -33,6 +33,7 @@ $(() => {
             $.post(`/bad/${item.data('fileName')}`)
             .done(() => {
                 $('#status').text('Ok');
+                preparePane();
             })
             .fail(err => {
                 $('#status').text(err);
@@ -43,6 +44,7 @@ $(() => {
             $.post(`/good/${item.data('fileName')}`)
             .done(() => {
                 $('#status').text('Ok');
+                preparePane();
             })
             .fail(err => {
                 $('#status').text(err);
@@ -64,7 +66,7 @@ $(() => {
     });
 
     $.get('/list/')
-    .done(data => {
+    .done((data : string[]) => {
         fileList = data;
 
         $('#panes').empty();
