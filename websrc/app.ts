@@ -20,7 +20,7 @@ $(() => {
                 <div class="like"></div>
                 <div class="dislike"></div>
             </li>`)
-            .data('fileName', headFile);
+            .prop('fileName', headFile);
         
         $('.img', slide)
         .css('background', `url('capturedData/${headFile}') no-repeat scroll center center`);
@@ -34,7 +34,7 @@ $(() => {
         // dislike callback
         onDislike: function (item) {
             console.log(item);
-            $.post(`/bad/${$(item).data('fileName')}`)
+            $.post(`/bad/${$(item).prop('fileName')}`)
             .done(() => {
                 $('#status').text('Ok');
                 preparePane();
@@ -46,7 +46,7 @@ $(() => {
         // like callback
         onLike: function (item) {
             console.log(item);
-            $.post(`/good/${$(item).data('fileName')}`)
+            $.post(`/good/${$(item).prop('fileName')}`)
             .done(() => {
                 $('#status').text('Ok');
                 preparePane();
