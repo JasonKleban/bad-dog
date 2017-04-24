@@ -28,14 +28,14 @@ app.get('/list', function(req, res){
 });
 
 app.post('/good/:name', function(req, res){
-    fs.rename(images + req.query.name, images + '/good/' + req.query.name, (err) => {
+    fs.rename(images + req.query.name, images + 'good/' + req.query.name, (err) => {
         if (err) res.status(500).send(err);
         else res.send('OK');
     });
 });
 
 app.post('/bad/:name', function(req, res){
-    fs.rename(images + req.query.name, images + '/bad/'  + req.query.name, (err) => {
+    fs.rename(images + req.query.name, images + 'bad/'  + req.query.name, (err) => {
         if (err) res.status(500).send(err)
         else res.send('OK');
     });
