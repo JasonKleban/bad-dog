@@ -30,7 +30,7 @@ $(() => {
         // dislike callback
         onDislike: function (item) {
             $.post(`/bad/${item.data('fileName')}`)
-            .done(data => {
+            .done(() => {
                 $('#status').text('Ok');
             })
             .fail(err => {
@@ -40,7 +40,7 @@ $(() => {
         // like callback
         onLike: function (item) {
             $.post(`/good/${item.data('fileName')}`)
-            .done(data => {
+            .done(() => {
                 $('#status').text('Ok');
             })
             .fail(err => {
