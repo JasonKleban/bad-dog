@@ -28,6 +28,10 @@ app.get('/list', function(req, res){
 });
 
 app.post('/good/:name', function(req, res){
+    if (!fs.existsSync(images + 'good/')){
+        fs.mkdirSync(images + 'good/');
+    }
+
     fs.rename(images + req.params.name, images + 'good/' + req.params.name, (err) => {
         if (err) res.status(500).send(err);
         else res.send('OK');
@@ -35,6 +39,10 @@ app.post('/good/:name', function(req, res){
 });
 
 app.post('/bad/:name', function(req, res){
+    if (!fs.existsSync(images + 'bad/')){
+        fs.mkdirSync(images + 'bad/');
+    }
+
     fs.rename(images + req.params.name, images + 'bad/'  + req.params.name, (err) => {
         if (err) res.status(500).send(err)
         else res.send('OK');
