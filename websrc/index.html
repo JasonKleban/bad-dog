@@ -1,71 +1,27 @@
 
 <!DOCTYPE html>
-<html>
+<html style="height: 100%">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bad-dog labeler</title>
-    <link rel="stylesheet" type="text/css" href="css/jTinder.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
-    <!-- start padding container -->
-    <div class="wrap">
-        <!-- start jtinder container -->
-        <div id="tinderslide">
-            <ul id="panes">
-                <li class="pane1">
-                    <div class="img"></div>
-                    <div>Miami Beach</div>
-                    <div class="like"></div>
-                    <div class="dislike"></div>
-                </li>
-                <li class="pane2">
-                    <div class="img"></div>
-                    <div>San Francisco</div>
-                    <div class="like"></div>
-                    <div class="dislike"></div>
-                </li>
-                <li class="pane3">
-                    <div class="img"></div>
-                    <div>Chicago</div>
-                    <div class="like"></div>
-                    <div class="dislike"></div>
-                </li>
-                <li class="pane4">
-                    <div class="img"></div>
-                    <div>New York</div>
-                    <div class="like"></div>
-                    <div class="dislike"></div>
-                </li>
-                <li class="pane5">
-                    <div class="img"></div>
-                    <div>Beach</div>
-                    <div class="like"></div>
-                    <div class="dislike"></div>
-                </li>
-            </ul>
+<body style="height: 100%; margin: 0; padding: 0;">
+    <div class="flex-container1" style="position: absolute; top: 0; left: 0; bottom: 0; right: 0; overflow: hidden;">
+        <div class="flex-item1" style="overflow: hidden;">
+            <img id="capture" style="width: 100%; object-fit: contain;" />
         </div>
-        <!-- end jtinder container -->
+        <div class="flex-item1" style="height: 140px; position: relative; overflow: hidden;">
+            <div class="flex-container2" style="position: absolute; top: 0; left: 0; bottom: 0; right: 0; overflow: hidden;">
+                <button id="good-dog" class="flex-item2" style="text-align: center;">Good Dog</button>
+                <button id="bad-dog" class="flex-item2" style="text-align: center;">Bad Dog</button>
+            </div>
+        </div>
     </div>
-    <!-- end padding container -->
-
-    <!-- jTinder trigger by buttons  -->
-    <div class="actions">
-        <a href="#" class="dislike"><i></i></a>
-        <a href="#" class="like"><i></i></a>
-    </div>
-
-    <!-- jTinder status text  -->
-    <div id="status"></div>
-
-    <!-- jQuery lib -->
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <!-- transform2d lib -->
-    <script type="text/javascript" src="js/jquery.transform2d.js"></script>
-    <!-- jTinder lib -->
-    <script type="text/javascript" src="js/jquery.jTinder.js"></script>
-    <!-- jTinder initialization script -->
+    <script type="text/javascript" src="jquery.min.js"></script>
+    
     <script type="text/javascript" src="app.js"></script>
 </body>
 </html>
