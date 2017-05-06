@@ -11,7 +11,7 @@ app.use('/capturedData', serveIndex(images, {'icons': true}));
 
 app.get('/list', function(req, res){
     fs.readdir(images, (err, files) => {
-        var pngs = [];
+        var jpgs = [];
 
         if (err) {
             res.status(500).send(err);
@@ -19,10 +19,10 @@ app.get('/list', function(req, res){
         else {
             files.forEach((file) => {
                 if (file.indexOf('.jpg') != -1) {
-                    pngs.push(file);
+                    jpgs.push(file);
                 }
             });
-            res.send(pngs);
+            res.send(jpgs);
         }
     });
 });
