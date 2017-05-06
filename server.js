@@ -7,7 +7,7 @@ var app = express();
 var images = appRoot.resolve('out/capturedData/');
 
 app.use(express.static(appRoot.resolve('out')));
-app.use('/capturedData', serveIndex(images, {'icons': true}));
+app.use('out/capturedData/', serveIndex(images, {'icons': true}));
 
 app.get('/list', function(req, res){
     fs.readdir(images, (err, files) => {
