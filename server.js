@@ -18,7 +18,7 @@ app.get('/list', function(req, res){
         }
         else {
             files.forEach((file) => {
-                if (file.indexOf('.png') != -1) {
+                if (file.indexOf('.jpg') != -1) {
                     pngs.push(file);
                 }
             });
