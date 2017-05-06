@@ -7,7 +7,7 @@ from PIL import Image, ImageChops
 #from skimage.measure import structural_similarity as ssim
 
 similarity = 12.0
-out = 'out/capturedData'
+out = 'out/capturedData/'
 
 def rmsdiff(im1, im2):
     "Calculate the root-mean-square difference between two images"
