@@ -33,7 +33,7 @@ def main():
         #    .format(camera.exposure_mode, camera.exposure_speed))
 
         stream = io.BytesIO()
-        for _ in camera.capture_continuous(stream, format='jpg'):
+        for _ in camera.capture_continuous(stream, format='jpeg'):
             stream.seek(0)
             image = Image.open(stream)
 
