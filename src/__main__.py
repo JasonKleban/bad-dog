@@ -25,7 +25,7 @@ def main():
         if not os.path.exists(out):
             os.makedirs(out)
 
-        image.save(out + filename, 'PNG')
+        image.save(out + filename, 'JPG')
         state.lastImage = image
 
     with PiCamera() as camera:
@@ -33,11 +33,11 @@ def main():
         #    .format(camera.exposure_mode, camera.exposure_speed))
 
         stream = io.BytesIO()
-        for _ in camera.capture_continuous(stream, format='png'):
+        for _ in camera.capture_continuous(stream, format='jpg'):
             stream.seek(0)
             image = Image.open(stream)
 
-            filename = time.strftime('%Y%m%d-%H%M%S') + '.png'
+            filename = time.strftime('%Y%m%d-%H%M%S') + '.jpg'
 
             diff = None
 
