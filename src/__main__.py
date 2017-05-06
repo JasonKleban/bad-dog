@@ -25,7 +25,7 @@ def main():
         if not os.path.exists(out):
             os.makedirs(out)
 
-        image.save(out + filename, 'JPG')
+        image.save(out + filename, 'JPEG')
         state.lastImage = image
 
     with PiCamera() as camera:
