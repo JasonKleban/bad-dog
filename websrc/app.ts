@@ -12,11 +12,11 @@ var nextImage = () => {
     var op = () => {
         headFile = fileList.pop();
 
-        $('#no-images').toggle(!headFile);
+        $('#no-images').toggle(!!!headFile);
 
         $('#capture')
             .attr('src', `capturedData/${headFile}`)
-            .toggle(headFile);
+            .toggle(!!headFile);
     }
 
     if (!fileList.length) {
