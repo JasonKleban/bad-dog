@@ -2,11 +2,26 @@
 var fileList : string[] = [];
 var headFile : string;
 
-var nextImage = () => {
-    headFile = fileList.pop();
+var refresh = () =>
+    $.get('/list/')
+    .done((data : string[]) => {
+        fileList = data;
+    });
 
-    $('#capture')
-        .attr('src', `capturedData/${headFile}`);
+var nextImage = () => {
+    var op = () => {
+        headFile = fileList.pop();
+
+        $('#no-images').toggle(!headFile);
+
+        $('#capture')
+            .attr('src', `capturedData/${headFile}`)
+            .toggle(headFile);
+    }
+
+    if (!fileList.length) {
+        refresh().then(op);
+    }
 };
 
 $('#good-dog').on('click', () => {
@@ -24,9 +39,5 @@ $('#bad-dog').on('click', () => {
 });
 
 $(() => {
-    $.get('/list/')
-    .done((data : string[]) => {
-        fileList = data;
-        nextImage();
-    });
+    refresh().then(nextImage)
 });
