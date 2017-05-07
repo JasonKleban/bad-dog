@@ -22,8 +22,12 @@ var nextImage = () => {
         $('#next-up')
             .attr('src', `capturedData/${availableWork.images[1]}`);
 
-        $('#good-dog').text(`Good Dog (${availableWork.goodCount})`);
-        $('#bad-dog').text(`Bad Dog (${availableWork.badCount})`);
+        $('#good-dog')
+            .text(`Good Dog (${availableWork.goodCount})`)
+            .prop('disabled', !availableWork.images[0]);
+        $('#bad-dog')
+            .text(`Bad Dog (${availableWork.badCount})`)
+            .prop('disabled', !availableWork.images[0]);
     }
 
     if (!availableWork.images.length) {
