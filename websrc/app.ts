@@ -21,19 +21,21 @@ var nextImage = () => {
 
     if (!fileList.length) {
         refresh().then(op);
+    } else {
+        op();
     }
 };
 
 $('#good-dog').on('click', () => {
     $.post('/good/' + headFile)
-    .done((data : string[]) => {
+    .done(() => {
         nextImage();
     });
 });
 
 $('#bad-dog').on('click', () => {
     $.post('/bad/' + headFile)
-    .done((data : string[]) => {
+    .done(() => {
         nextImage();
     });
 });
