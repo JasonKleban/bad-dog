@@ -34,7 +34,7 @@ var nextImage = () => {
 };
 
 $('#good-dog').on('click', () => {
-    $.post('/good/' + availableWork.images[0])
+    $.post('/good/' + availableWork.images.shift())
     .done(() => {
         availableWork.goodCount++;
         nextImage();
@@ -42,7 +42,7 @@ $('#good-dog').on('click', () => {
 });
 
 $('#bad-dog').on('click', () => {
-    $.post('/bad/' + availableWork.images[0])
+    $.post('/bad/' + availableWork.images.shift())
     .done(() => {
         availableWork.badCount++;
         nextImage();
