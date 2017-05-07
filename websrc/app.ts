@@ -1,25 +1,32 @@
 
-var fileList : string[] = [];
-var headFile : string;
+var availableWork = {
+    goodCount: 0,
+    badCount: 0,
+    images: <string[]>[]
+};
 
 var refresh = () =>
     $.get('/list/')
-    .done((data : string[]) => {
-        fileList = data;
+    .done((data : typeof availableWork) => {
+        availableWork = data;
     });
 
 var nextImage = () => {
     var op = () => {
-        headFile = fileList.pop();
-
-        $('#no-images').toggle(!!!headFile);
+        $('#no-images').toggle(!!!availableWork.images[0]);
 
         $('#capture')
-            .attr('src', `capturedData/${headFile}`)
-            .toggle(!!headFile);
+            .attr('src', `capturedData/${availableWork.images[0]}`)
+            .toggle(!!availableWork.images[0]);
+
+        $('#next-up')
+            .attr('src', `capturedData/${availableWork.images[1]}`);
+
+        $('#good-dog').text(`Good Dog (${availableWork.goodCount})`);
+        $('#bad-dog').text(`Bad Dog (${availableWork.badCount})`);
     }
 
-    if (!fileList.length) {
+    if (!availableWork.images.length) {
         refresh().then(op);
     } else {
         op();
@@ -27,15 +34,17 @@ var nextImage = () => {
 };
 
 $('#good-dog').on('click', () => {
-    $.post('/good/' + headFile)
+    $.post('/good/' + availableWork.images[0])
     .done(() => {
+        availableWork.goodCount++;
         nextImage();
     });
 });
 
 $('#bad-dog').on('click', () => {
-    $.post('/bad/' + headFile)
+    $.post('/bad/' + availableWork.images[0])
     .done(() => {
+        availableWork.badCount++;
         nextImage();
     });
 });
